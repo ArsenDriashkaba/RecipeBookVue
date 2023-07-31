@@ -9,7 +9,9 @@ defineProps<Props>();
 </script>
 
 <template>
-  <h1>{{ recipe.title }}</h1>
+  <div class="m-5 shadow-md w-full">
+    <h1>{{ recipe.title }}</h1>
+  </div>
 </template>
 
 <style scoped></style>

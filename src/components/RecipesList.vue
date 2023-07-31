@@ -3,15 +3,16 @@ import RecipeCard from '@/components/RecipeCard.vue';
 import type { Recipe } from '@/types/recipe';
 
 type Props = {
-  recipes: Recipe[];
+  recipes?: Recipe[];
 };
 
 defineProps<Props>();
 </script>
 
 <template>
-  <h1>This is a recipes list component</h1>
-  <RecipeCard v-for="recipe in recipes" :recipe="recipe" :key="recipe._id" />
+  <div class="grid grid-cols-5">
+    <RecipeCard v-for="recipe in recipes" :recipe="recipe" :key="recipe?._id" />
+  </div>
 </template>
 
 <style scoped></style>

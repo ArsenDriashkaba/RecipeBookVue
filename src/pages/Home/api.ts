@@ -2,5 +2,5 @@ import { useQuery } from '@tanstack/vue-query';
 
 import { getRecipes } from '@/api/recipes';
 
-export const useGetRecipes = () =>
+export const useGetRecipesQuery = () =>
   useQuery({ queryKey: ['recipes'], queryFn: getRecipes });

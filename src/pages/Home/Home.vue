@@ -1,20 +1,35 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 
 import RecipesList from '@/components/RecipesList.vue';
-import { useGetRecipes } from '@/pages/Home/api';
+import { useGetRecipesQuery } from '@/pages/Home/api';
 import type { Recipe } from '@/types/recipe';
 
-const { isLoading, data: recipes } = useGetRecipes();
-const filteredValues: Recipe[] = ref(recipes);
-const searchValue = ref('');
+const { isLoading, data: recipes } = useGetRecipesQuery();
+
+const searchValue = ref<string>('');
+
+const filteredValues = computed<Recipe[]>(() => {
+  if (!recipes.value) {
+    return [];
+  }
+
+  if (!searchValue.value) {
+    return recipes.value;
+  }
+
+  return recipes.value.filter((recipe) =>
+    recipe.title.toLowerCase().includes(searchValue.value.toLowerCase()),
+  );
+});
 </script>
 
 <template>
-  <h1 v-if="isLoading">Loading...</h1>
-  <h1>Its a home page</h1>
-  <input v-model="searchValue" />
-  <RecipesList v-if="recipes" :recipes="filteredValues" />
+  <section>
+    <h1 v-if="isLoading">Loading...</h1>
+    <div class="m-3">
+      <input v-model="searchValue" />
+    </div>
+    <RecipesList v-if="recipes" :recipes="filteredValues" />
+  </section>
 </template>
-
-<style scoped></style>
