@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import RecipeCard from '@/components/RecipeCard.vue';
+import RecipeCard from '@/pages/Home/components/RecipeCard.vue';
 import type { Recipe } from '@/types/recipe';
 
 type Props = {

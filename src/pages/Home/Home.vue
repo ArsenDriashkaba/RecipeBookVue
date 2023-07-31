@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 
-import RecipesList from '@/components/RecipesList.vue';
 import { useGetRecipesQuery } from '@/pages/Home/api';
+import RecipesList from '@/pages/Home/components/RecipesList.vue';
 import type { Recipe } from '@/types/recipe';
 
 const { isLoading, data: recipes } = useGetRecipesQuery();

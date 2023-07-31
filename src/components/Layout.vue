@@ -6,7 +6,7 @@ import Header from '@/components/Header.vue';
 
 <template>
   <Header />
-  <main class="w-3/4 flex items-center justify-center mx-auto">
+  <main class="w-3/5 mx-auto">
     <RouterView />
   </main>
 </template>
