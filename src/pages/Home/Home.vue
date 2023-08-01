@@ -25,10 +25,14 @@ const filteredValues = computed<Recipe[]>(() => {
 </script>
 
 <template>
-  <section>
+  <section class="relative">
     <h1 v-if="isLoading">Loading...</h1>
-    <div class="m-3">
-      <input v-model="searchValue" />
+    <div class="m-3 sticky top-0">
+      <input
+        v-model="searchValue"
+        placeholder="Discover best recipes..."
+        class="w-2/3"
+      />
     </div>
     <RecipesList v-if="recipes" :recipes="filteredValues" />
   </section>
