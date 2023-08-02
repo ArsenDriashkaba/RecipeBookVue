@@ -2,6 +2,7 @@
 import { useRoute } from 'vue-router';
 
 import foodPlaceholder from '@/assets/food-placeholder.png';
+import Button from '@/components/Button.vue';
 import { useGetRecipeDetailQuery } from '@/pages/RecipeDetail/api';
 import DirectionsList from '@/pages/RecipeDetail/components/DirectionsList.vue';
 import IngredientsList from '@/pages/RecipeDetail/components/IngredientsList.vue';
@@ -12,7 +13,10 @@ const { data: recipe } = useGetRecipeDetailQuery(recipeId);
 </script>
 
 <template>
-  <h1 class="text-4xl my-10">{{ recipe?.title }}</h1>
+  <div class="pt-10 pb-5 mb-5 flex items-center justify-between border-b-2">
+    <h1 class="text-4xl">{{ recipe?.title }}</h1>
+    <Button>Edit</Button>
+  </div>
   <p>
     Last modified:
     <DateFormat
