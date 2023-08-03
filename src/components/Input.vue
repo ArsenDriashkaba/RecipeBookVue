@@ -1,15 +1,14 @@
 <script setup lang="ts">
-type Props = {
-  type?: HTMLInputElement['type'];
-  required?: HTMLInputElement['required'];
-  placeholder?: HTMLInputElement['placeholder'];
+export type InputProps = {
+  type?: string;
+  placeholder?: string;
 };
 
-withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<InputProps>(), {
   type: 'text',
 });
 </script>
 
 <template>
-  <input :type="type" :required="required" :placeholder="placeholder" />
+  <input class="" :placeholder="placeholder" :type="type" />
 </template>

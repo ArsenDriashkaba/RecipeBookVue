@@ -7,11 +7,13 @@ import { routes } from '@/router/routes';
   <header class="bg-dark sticky top-0 z-10">
     <div class="w-3/4 mx-auto py-5 flex items-center justify-between">
       <RouterLink :to="routes.home">
-        <h1 class="text-2xl text-white hover:scale-110">
+        <h1 class="text-2xl text-white hover:scale-110 transition ease-in-out">
           Feed your cat bro!
         </h1></RouterLink
       >
-      <Button>Add recipe</Button>
+      <RouterLink :to="routes.addRecipe"
+        ><Button>Add recipe</Button></RouterLink
+      >
     </div>
   </header>
 </template>
