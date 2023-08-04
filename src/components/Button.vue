@@ -10,10 +10,12 @@ const styleVariants = {
 
 type Props = {
   variant?: Variant;
+  type?: HTMLInputElement['type'];
 };
 
 withDefaults(defineProps<Props>(), {
   variant: 'primary',
+  type: 'button',
 });
 </script>
 
@@ -23,6 +25,7 @@ withDefaults(defineProps<Props>(), {
       'hover:scale-110 transition ease-in-out py-2 px-5 text-md font-semibold',
       styleVariants[variant],
     ]"
+    :type="type"
   >
     <slot />
   </button>

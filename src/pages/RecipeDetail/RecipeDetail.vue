@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router';
 
 import foodPlaceholder from '@/assets/food-placeholder.png';
 import Button from '@/components/Button.vue';
-import RecipeForm from '@/components/RecipeForm.vue';
+import RecipeForm from '@/components/RecipeForm/RecipeForm.vue';
 import { useGetRecipeDetailQuery } from '@/pages/RecipeDetail/api';
 import DirectionsList from '@/pages/RecipeDetail/components/DirectionsList.vue';
 import IngredientsList from '@/pages/RecipeDetail/components/IngredientsList.vue';

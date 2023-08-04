@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T">
+<script setup lang="ts">
 import { computed } from 'vue';
 import {
   Combobox,
@@ -7,44 +7,57 @@ import {
   ComboboxOptions,
 } from '@headlessui/vue';
 
-type SelectOption<T> = {
+export type SelectOption = {
   label: string;
-  value: T;
-};
-
-export type SelectProps<T> = {
-  options: SelectOption<T>[];
   value: string;
 };
 
-export type EmitProps = {
-  change: any;
+export type SelectProps = {
+  options: SelectOption[];
+  value: string;
 };
 
-const props = defineProps<SelectProps<T>>();
-const emit = defineEmits<EmitProps>();
+export type Emits = {
+  (e: 'change', value: string): void;
+};
+
+const props = defineProps<SelectProps>();
+const emit = defineEmits<Emits>();
 
 const filteredOptions = computed(() =>
   props.value === ''
     ? props.options
-    : props.options.filter(({ label }) => {
-        return label.toLowerCase().includes(props.value.toLowerCase());
-      }),
+    : props.options.filter(({ label }) =>
+        label.toLowerCase().includes(props.value.toLowerCase()),
+      ),
 );
 
-const handleChange = (event) => emit('change', event);
+const handleInputChange = (emitValue) => emit('change', emitValue);
 </script>
 
 <template>
-  <Combobox>
-    <ComboboxInput @input="handleChange" />
-    <ComboboxOptions>
+  <Combobox :modelValue="value" @update:modelValue="handleInputChange">
+    <ComboboxInput @input="handleInputChange" />
+    <ComboboxOptions
+      class="w-full py-2 max-h-36 overflow-y-scroll"
+      v-if="filteredOptions.length"
+    >
       <ComboboxOption
         v-for="({ label, value }, index) in filteredOptions"
         :key="index"
         :value="value"
+        v-slot="{ active, selected }"
+        class="relative"
       >
-        {{ label }}
+        <div
+          :class="[
+            'w-full py-1',
+            active && 'bg-gray-100',
+            selected && 'border-2',
+          ]"
+        >
+          {{ label }}
+        </div>
       </ComboboxOption>
     </ComboboxOptions>
   </Combobox>

@@ -5,7 +5,7 @@ import BaseField, {
 import type { SelectProps } from '@/components/SelectInput.vue';
 import SelectInput from '@/components/SelectInput.vue';
 
-type Props = Pick<SelectProps<any>, 'options'> & BaseFieldProps;
+type Props = Pick<SelectProps, 'options'> & BaseFieldProps;
 
 defineProps<Props>();
 </script>
@@ -19,7 +19,7 @@ defineProps<Props>();
     v-slot="{ field }"
   >
     <SelectInput
-      :value="field.value.value"
+      :value="field.value.value || ''"
       @change="field.handleChange"
       :options="options"
     />
