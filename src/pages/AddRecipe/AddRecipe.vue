@@ -14,6 +14,10 @@ const handleAddRecipe = ({ newIngredient, ...recipe }: AddRecipe) =>
 </script>
 
 <template>
-  <h1>Add recipe!</h1>
-  <RecipeForm @onSubmit="handleAddRecipe" />
+  <h1 class="text-3xl mt-5">Create your new recipe:</h1>
+  <RecipeForm
+    @onSubmit="handleAddRecipe"
+    hasCancelButton
+    @onCancel="router.go(-1)"
+  />
 </template>

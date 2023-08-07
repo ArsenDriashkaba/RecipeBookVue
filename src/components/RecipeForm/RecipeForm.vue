@@ -11,15 +11,22 @@ import type { Recipe } from '@/types/recipe';
 
 type Props = {
   initialValues?: Recipe;
+  hasCancelButton?: boolean;
 };
 
 defineProps<Props>();
+const emit = defineEmits(['onCancel']);
 
 const { data: ingredients } = useGetIngredientsQuery();
 
 const validationSchema = yup.object().shape({
   title: yup.string().required().min(3).max(100),
-  preparationTime: yup.number().required().min(1),
+  preparationTime: yup
+    .number()
+    .required(
+      'Preparation time is required field. Please enter a number of minutes',
+    )
+    .min(1),
   servingCount: yup.number(),
   directions: yup.string().required().min(3),
   ingredients: yup.array().of(
@@ -38,8 +45,14 @@ const validationSchema = yup.object().shape({
     :formOptions="{ validationSchema, initialValues }"
     autocomplete="off"
   >
-    <div class="flex">
-      <div class="w-1/2">
+    <div class="flex w-full gap-2 py-4 items-center justify-end">
+      <Button v-if="hasCancelButton" @click="emit('onCancel')" variant="ghost"
+        >Cancel</Button
+      >
+      <Button type="submit">Submit</Button>
+    </div>
+    <div class="flex gap-2">
+      <div class="w-1/2 border-2 my-3 p-3">
         <InputField
           label="Name"
           name="title"
@@ -51,14 +64,18 @@ const validationSchema = yup.object().shape({
           name="preparationTime"
           isRequired
           type="number"
+          placeholder="Enter time in minutes..."
         />
         <InputField label="Serving count" name="servingCount" type="number" />
 
-        <TextAreaField label="Directions" name="directions" isRequired />
+        <TextAreaField
+          label="Directions"
+          name="directions"
+          isRequired
+          placeholder="Use enter to define unique steps..."
+        />
       </div>
       <AddIngredientList :ingredients="ingredients" class="w-1/2" />
     </div>
-
-    <Button type="submit">Submit</Button>
   </Form>
 </template>

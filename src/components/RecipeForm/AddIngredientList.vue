@@ -44,23 +44,30 @@ const handleAddNewIngredient = () => {
 </script>
 
 <template>
-  <div class="border-2 border-accent m-3 p-3">
-    <div
-      v-for="(ingredient, index) in fields.values()"
-      :key="index"
-      class="flex border-2 gap-2 p-2 items-center"
-    >
-      {{ ingredient.value.name }}
-      <Button @click="remove(index)">Remove</Button>
-    </div>
+  <div class="border-2 my-3 p-3">
+    <p class="border-b-2 mb-5">Add new ingredient</p>
 
     <SelectField
       :options="ingredientsOptions"
       name="newIngredient.name"
       label="Name"
     />
-    <InputField name="newIngredient.amountUnit" label="Amount unit" />
     <InputField name="newIngredient.amount" type="number" label="Amount" />
-    <Button @click="handleAddNewIngredient">Add ingredient</Button>
+    <InputField name="newIngredient.amountUnit" label="Amount unit" />
+    <Button @click="handleAddNewIngredient" class="mb-10"
+      >Add ingredient</Button
+    >
+
+    <p class="border-b-2 mb-5" v-if="fields.length">List of ingredients</p>
+    <div
+      v-for="({ value }, index) in fields.values()"
+      :key="index"
+      class="flex border-2 gap-2 p-2 items-center justify-between"
+    >
+      <span class="w-2/4">{{ value.name }}</span>
+      <span class="w-1/4">{{ value.amount }}</span>
+      <span class="w-1/4">{{ value.amountUnit }}</span>
+      <Button @click="remove(index)" variant="gost">Remove</Button>
+    </div>
   </div>
 </template>

@@ -7,5 +7,5 @@ defineProps<TextAreaProps>();
 </script>
 
 <template>
-  <textarea class="" :placeholder="placeholder" />
+  <textarea class="w-full h-48" :placeholder="placeholder" />
 </template>

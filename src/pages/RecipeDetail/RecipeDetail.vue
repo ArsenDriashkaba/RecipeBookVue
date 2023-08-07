@@ -31,7 +31,12 @@ const handleUpdateRecipe = ({ newIngredient, ...recipe }: any) =>
 
 <template>
   <div v-if="isEditMode">
-    <RecipeForm :initialValues="recipe" @onSubmit="handleUpdateRecipe" />
+    <RecipeForm
+      :initialValues="recipe"
+      @onSubmit="handleUpdateRecipe"
+      hasCancelButton
+      @onCancel="isEditMode = false"
+    />
   </div>
   <div v-else>
     <div class="pt-10 pb-5 mb-5 flex items-center justify-between border-b-2">
