@@ -6,23 +6,38 @@ import InputField from '@/components/Form/Fields/InputField.vue';
 import TextAreaField from '@/components/Form/Fields/TextAreaField.vue';
 import Form from '@/components/Form/Form.vue';
 import AddIngredientList from '@/components/RecipeForm/AddIngredientList.vue';
+import { useGetIngredientsQuery } from '@/components/RecipeForm/api';
+import type { Recipe } from '@/types/recipe';
 
 type Props = {
-  ingredients?: string[];
+  initialValues?: Recipe;
 };
 
 defineProps<Props>();
 
-const validationSchema = yup.object({
+const { data: ingredients } = useGetIngredientsQuery();
+
+const validationSchema = yup.object().shape({
   title: yup.string().required().min(3).max(100),
   preparationTime: yup.number().required().min(1),
   servingCount: yup.number(),
   directions: yup.string().required().min(3),
+  ingredients: yup.array().of(
+    yup.object().shape({
+      name: yup.string().required().min(3).max(100),
+      amount: yup.number(),
+      amountUnit: yup.string(),
+    }),
+  ),
 });
 </script>
 
 <template>
-  <Form class="w-full" :formOptions="{ validationSchema }" autocomplete="off">
+  <Form
+    class="w-full"
+    :formOptions="{ validationSchema, initialValues }"
+    autocomplete="off"
+  >
     <div class="flex">
       <div class="w-1/2">
         <InputField

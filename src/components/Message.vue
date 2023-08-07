@@ -25,7 +25,7 @@ withDefaults(defineProps<Props>(), {
 <template>
   <p
     :class="[
-      'p-5 m-2 border-solid border-2 font-bold w-fit',
+      'p-5 m-2 border-solid border-2 font-bold w-full flex items-center justify-center h-fit',
       status && statusStyles[status],
     ]"
   >

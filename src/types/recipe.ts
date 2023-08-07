@@ -25,6 +25,8 @@ export type AddRecipe = {
   preparationTime?: number;
   servingCount?: number;
   directions?: string;
-  ingredients?: Omit<Ingredient, '_id'>[];
+  ingredients?: AddRecipeIngredient[];
   sideDish?: string;
 };
+
+export type AddRecipeIngredient = Omit<Ingredient, '_id'>;

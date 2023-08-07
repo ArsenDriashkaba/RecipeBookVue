@@ -1,24 +1,31 @@
 <script setup lang="ts">
 import { computed, ComputedRef } from 'vue';
-import { useFieldArray, useFieldValue } from 'vee-validate';
+import { useFieldArray, useFieldValue, useSetFieldValue } from 'vee-validate';
 
 import Button from '@/components/Button.vue';
 import InputField from '@/components/Form/Fields/InputField.vue';
 import SelectField from '@/components/Form/Fields/SelectField.vue';
 import type { SelectOption } from '@/components/SelectInput.vue';
-import type { Ingredient } from '@/types/recipe';
+import type { AddRecipeIngredient } from '@/types/recipe';
+
+const emptyIngredient: AddRecipeIngredient = {
+  amount: null,
+  name: '',
+  amountUnit: '',
+};
 
 type Props = {
   ingredients?: string[];
 };
 
 const props = withDefaults(defineProps<Props>(), {
-  ingredients: [],
+  ingredients: () => [],
 });
 
 const { remove, push, fields } =
-  useFieldArray<Omit<Ingredient, '_id'>>('ingredients');
-const newIngredient = useFieldValue('newIngredient');
+  useFieldArray<AddRecipeIngredient>('ingredients');
+const newIngredient = useFieldValue<AddRecipeIngredient>('newIngredient');
+const setFieldValue = useSetFieldValue('newIngredient');
 
 const ingredientsOptions: ComputedRef<SelectOption[]> = computed(() =>
   props.ingredients.map((ingredient) => {
@@ -32,6 +39,7 @@ const handleAddNewIngredient = () => {
   }
 
   push(newIngredient.value);
+  setFieldValue(emptyIngredient);
 };
 </script>
 

@@ -5,7 +5,10 @@ import { useRoute } from 'vue-router';
 import foodPlaceholder from '@/assets/food-placeholder.png';
 import Button from '@/components/Button.vue';
 import RecipeForm from '@/components/RecipeForm/RecipeForm.vue';
-import { useGetRecipeDetailQuery } from '@/pages/RecipeDetail/api';
+import {
+  useGetRecipeDetailQuery,
+  useUpdateRecipeMutation,
+} from '@/pages/RecipeDetail/api';
 import DirectionsList from '@/pages/RecipeDetail/components/DirectionsList.vue';
 import IngredientsList from '@/pages/RecipeDetail/components/IngredientsList.vue';
 
@@ -13,13 +16,22 @@ const isEditMode = ref(false);
 
 const route = useRoute();
 const recipeId: string = route.params?.id as string;
-const { data: recipe } = useGetRecipeDetailQuery(recipeId);
+const { data: recipe, refetch: recipeDetailRefetch } =
+  useGetRecipeDetailQuery(recipeId);
+const { mutate: updateRecipeMutate } = useUpdateRecipeMutation(recipeId);
+
+const handleUpdateRecipe = ({ newIngredient, ...recipe }: any) =>
+  updateRecipeMutate(recipe, {
+    onSuccess: () => {
+      recipeDetailRefetch();
+      isEditMode.value = false;
+    },
+  });
 </script>
 
 <template>
   <div v-if="isEditMode">
-    <h1>Here we will edit our form component!</h1>
-    <RecipeForm />
+    <RecipeForm :initialValues="recipe" @onSubmit="handleUpdateRecipe" />
   </div>
   <div v-else>
     <div class="pt-10 pb-5 mb-5 flex items-center justify-between border-b-2">
