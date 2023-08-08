@@ -25,7 +25,7 @@ const filteredValues = computed<Recipe[]>(() => {
 </script>
 
 <template>
-  <Page :isLoading="isLoading" :isError="isError">
+  <Page :isLoading="isLoading" :isError="isError" :hasBackButton="false">
     <section class="relative">
       <div class="m-3 sticky top-0">
         <input

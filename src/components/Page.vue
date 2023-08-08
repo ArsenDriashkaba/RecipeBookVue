@@ -1,15 +1,22 @@
 <script setup lang="ts">
 import Message from '@/components/Message.vue';
+import Button from '@/components/Button.vue';
+import router from '@/router';
 
 type Props = {
   hasBackButton?: boolean;
   isError?: boolean;
   isLoading?: boolean;
 };
-withDefaults(defineProps<Props>(), {});
+withDefaults(defineProps<Props>(), {
+  hasBackButton: true,
+});
 </script>
 
 <template>
+  <Button v-if="hasBackButton" variant="ghost" @click="router.go(-1)">{{
+    '< Back'
+  }}</Button>
   <Message
     text="Loading... Imagine some spinner or skeleton ._."
     v-if="isLoading"
