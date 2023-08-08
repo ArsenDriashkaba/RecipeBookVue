@@ -5,12 +5,14 @@ import { useRoute } from 'vue-router';
 import foodPlaceholder from '@/assets/food-placeholder.png';
 import Button from '@/components/Button.vue';
 import FavoriteButton from '@/components/FavoriteButton.vue';
+import { useModal } from '@/components/Modal/useModal';
 import Page from '@/components/Page.vue';
 import RecipeForm from '@/components/RecipeForm/RecipeForm.vue';
 import {
   useGetRecipeDetailQuery,
   useUpdateRecipeMutation,
 } from '@/pages/RecipeDetail/api';
+import DeleteRecipeModal from '@/pages/RecipeDetail/components/DeleteRecipeModal.vue';
 import DirectionsList from '@/pages/RecipeDetail/components/DirectionsList.vue';
 import IngredientsList from '@/pages/RecipeDetail/components/IngredientsList.vue';
 
@@ -18,8 +20,8 @@ const route = useRoute();
 const recipeId: string = route.params?.id as string;
 const recipeDetailQuery = useGetRecipeDetailQuery(recipeId);
 const recipeDetailMutation = useUpdateRecipeMutation(recipeId);
+const deleteRecipeDialog = useModal();
 
-const { data: recipe } = recipeDetailQuery;
 const isEditMode = ref(false);
 const isLoading = computed(
   () =>
@@ -28,6 +30,7 @@ const isLoading = computed(
 const isError = computed(
   () => recipeDetailQuery.isError.value || recipeDetailMutation.isError.value,
 );
+const recipe = computed(() => recipeDetailQuery.data.value);
 
 const handleUpdateRecipe = ({ newIngredient, ...recipe }: any) =>
   recipeDetailMutation.mutate(recipe, {
@@ -52,7 +55,13 @@ const handleUpdateRecipe = ({ newIngredient, ...recipe }: any) =>
       <div class="pt-10 pb-5 mb-5 flex items-center justify-between border-b-2">
         <h1 class="text-4xl">{{ recipe?.title }}</h1>
         <div class="flex gap-3">
-          <FavoriteButton :recipeId="recipe?._id" />
+          <Button
+            variant="ghost"
+            @click="deleteRecipeDialog.handleIsOpen(true)"
+          >
+            Delete
+          </Button>
+          <FavoriteButton :recipeId="recipeId" />
           <Button @click="isEditMode = true">Edit</Button>
         </div>
       </div>
@@ -64,6 +73,7 @@ const handleUpdateRecipe = ({ newIngredient, ...recipe }: any) =>
           class="text-green-600"
         />
       </p>
+      <p>{{ recipe?.preparationTime }} min</p>
       <div class="flex gap-16 py-8">
         <div class="w-1/3">
           <img
@@ -76,5 +86,10 @@ const handleUpdateRecipe = ({ newIngredient, ...recipe }: any) =>
         <DirectionsList :directions="recipe?.directions" class="w-2/3" />
       </div>
     </div>
+    <DeleteRecipeModal
+      :recipeId="recipeId"
+      :isOpen="deleteRecipeDialog.getIsOpen()"
+      @onClose="deleteRecipeDialog.handleIsOpen(false)"
+    />
   </Page>
 </template>

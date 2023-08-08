@@ -17,7 +17,7 @@ const buttonText = computed(() =>
 </script>
 
 <template>
-  <Button @click="toggleFavoriteState(recipeId)" variant="secondary">{{
-    buttonText
-  }}</Button>
+  <Button @click="toggleFavoriteState(recipeId)" variant="secondary">
+    {{ buttonText }}
+  </Button>
 </template>

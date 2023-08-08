@@ -47,8 +47,11 @@ export const updateRecipe = async (
 };
 
 export const deleteRecipe = async (id: string) => {
-  const res = await fetch(`${API_BASE_URL}/recipes/${id}`, {
-    method: 'DELETE',
-  });
-  return res.json();
+  try {
+    return await fetch(`${API_BASE_URL}/recipes/${id}`, {
+      method: 'DELETE',
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
