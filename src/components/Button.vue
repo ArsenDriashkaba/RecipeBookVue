@@ -1,10 +1,9 @@
 <script setup lang="ts">
-type Variant = 'primary' | 'secondary' | 'gost';
+type Variant = 'primary' | 'secondary' | 'ghost';
 
 const styleVariants = {
   primary: 'bg-newOrange text-white hover:text-dark',
-  secondary:
-    'border border-4 border-solid border-newOrange text-newOrange hover:text-white',
+  secondary: 'border border-2 border-solid border-newOrange text-newOrange',
   ghost: 'text-newOrange',
 };
 

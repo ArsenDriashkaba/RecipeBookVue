@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router';
 
 import foodPlaceholder from '@/assets/food-placeholder.png';
 import Button from '@/components/Button.vue';
+import FavoriteButton from '@/components/FavoriteButton.vue';
 import Page from '@/components/Page.vue';
 import RecipeForm from '@/components/RecipeForm/RecipeForm.vue';
 import {
@@ -50,7 +51,10 @@ const handleUpdateRecipe = ({ newIngredient, ...recipe }: any) =>
     <div v-else>
       <div class="pt-10 pb-5 mb-5 flex items-center justify-between border-b-2">
         <h1 class="text-4xl">{{ recipe?.title }}</h1>
-        <Button @click="isEditMode = true">Edit</Button>
+        <div class="flex gap-3">
+          <FavoriteButton :recipeId="recipe?._id" />
+          <Button @click="isEditMode = true">Edit</Button>
+        </div>
       </div>
       <p>
         Last modified:

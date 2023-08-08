@@ -1,8 +1,8 @@
 <script setup lang="ts" generic="Values">
 import { FormOptions, useForm } from 'vee-validate';
 
-type EmitProps = {
-  onSubmit: Values;
+type Emits = {
+  (e: 'onSubmit', value: Values): void;
 };
 type Props = {
   formOptions?: FormOptions<Values>;
@@ -10,7 +10,7 @@ type Props = {
 
 const props = defineProps<Props>();
 
-const emit = defineEmits<EmitProps>();
+const emit = defineEmits<Emits>();
 
 const form = useForm<Values>(props.formOptions);
 

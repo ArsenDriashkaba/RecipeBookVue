@@ -67,7 +67,7 @@ const handleAddNewIngredient = () => {
       <span class="w-2/4">{{ value.name }}</span>
       <span class="w-1/4">{{ value.amount }}</span>
       <span class="w-1/4">{{ value.amountUnit }}</span>
-      <Button @click="remove(index)" variant="gost">Remove</Button>
+      <Button @click="remove(index)" variant="ghost">X</Button>
     </div>
   </div>
 </template>

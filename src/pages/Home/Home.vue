@@ -27,7 +27,6 @@ const filteredValues = computed<Recipe[]>(() => {
 <template>
   <Page :isLoading="isLoading" :isError="isError">
     <section class="relative">
-      <h1 v-if="isLoading">Loading...</h1>
       <div class="m-3 sticky top-0">
         <input
           v-model="searchValue"
