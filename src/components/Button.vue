@@ -1,19 +1,17 @@
 <script setup lang="ts">
-type Variant = 'primary' | 'secondary' | 'ghost';
-
 const styleVariants = {
   primary: 'bg-newOrange text-white hover:text-dark',
   secondary: 'border border-2 border-solid border-newOrange text-newOrange',
   ghost: 'text-newOrange',
 };
 
-type Props = {
-  variant?: Variant;
+export type ButtonProps = {
+  variant?: keyof typeof styleVariants;
   type?: HTMLInputElement['type'];
   className?: string;
 };
 
-withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<ButtonProps>(), {
   variant: 'primary',
   type: 'button',
 });

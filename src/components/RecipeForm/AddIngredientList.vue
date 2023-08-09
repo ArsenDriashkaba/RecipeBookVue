@@ -5,11 +5,12 @@ import { useFieldArray, useFieldValue, useSetFieldValue } from 'vee-validate';
 import Button from '@/components/Button.vue';
 import InputField from '@/components/Form/Fields/InputField.vue';
 import SelectField from '@/components/Form/Fields/SelectField.vue';
+import IconButton from '@/components/IconButton.vue';
 import type { SelectOption } from '@/components/SelectInput.vue';
 import type { AddRecipeIngredient } from '@/types/recipe';
 
 const emptyIngredient: AddRecipeIngredient = {
-  amount: null,
+  amount: undefined,
   name: '',
   amountUnit: '',
 };
@@ -67,7 +68,7 @@ const handleAddNewIngredient = () => {
       <span class="w-2/4">{{ value.name }}</span>
       <span class="w-1/4">{{ value.amount }}</span>
       <span class="w-1/4">{{ value.amountUnit }}</span>
-      <Button @click="remove(index)" variant="ghost">X</Button>
+      <IconButton name="deleteBin" @click="remove(index)" />
     </div>
   </div>
 </template>

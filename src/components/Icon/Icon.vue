@@ -13,17 +13,18 @@ const sizes = {
 const variants = {
   dark: 'black',
   light: 'white',
+  accent: 'orange',
 };
 
-type Props = {
+export type IconProps = {
   name: IconName;
   size?: keyof typeof sizes;
   variant?: keyof typeof variants;
 };
 
-withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<IconProps>(), {
   size: 'md',
-  variant: 'dark',
+  variant: 'accent',
 });
 </script>
 

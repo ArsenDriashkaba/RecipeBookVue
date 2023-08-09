@@ -15,7 +15,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <Button
-    className="p-0"
+    className="px-0"
     v-if="hasBackButton"
     variant="ghost"
     @click="router.go(-1)"
