@@ -10,6 +10,7 @@ const styleVariants = {
 type Props = {
   variant?: Variant;
   type?: HTMLInputElement['type'];
+  className?: string;
 };
 
 withDefaults(defineProps<Props>(), {
@@ -23,6 +24,7 @@ withDefaults(defineProps<Props>(), {
     :class="[
       'hover:scale-110 transition ease-in-out py-2 px-5 text-md font-semibold',
       styleVariants[variant],
+      className,
     ]"
     :type="type"
   >

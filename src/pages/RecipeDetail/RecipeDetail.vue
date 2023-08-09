@@ -15,6 +15,7 @@ import {
 import DeleteRecipeModal from '@/pages/RecipeDetail/components/DeleteRecipeModal.vue';
 import DirectionsList from '@/pages/RecipeDetail/components/DirectionsList.vue';
 import IngredientsList from '@/pages/RecipeDetail/components/IngredientsList.vue';
+import { AddRecipe } from '@/types/recipe';
 
 const route = useRoute();
 const recipeId: string = route.params?.id as string;
@@ -32,7 +33,7 @@ const isError = computed(
 );
 const recipe = computed(() => recipeDetailQuery.data.value);
 
-const handleUpdateRecipe = ({ newIngredient, ...recipe }: any) =>
+const handleUpdateRecipe = ({ newIngredient, ...recipe }: AddRecipe) =>
   recipeDetailMutation.mutate(recipe, {
     onSuccess: () => {
       recipeDetailQuery.refetch();
@@ -52,7 +53,7 @@ const handleUpdateRecipe = ({ newIngredient, ...recipe }: any) =>
       />
     </div>
     <div v-else>
-      <div class="pt-10 pb-5 mb-5 flex items-center justify-between border-b-2">
+      <div class="pt-2 pb-5 mb-5 flex items-center justify-between border-b-2">
         <h1 class="text-4xl">{{ recipe?.title }}</h1>
         <div class="flex gap-3">
           <Button
