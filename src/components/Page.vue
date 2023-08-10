@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Button from '@/components/Button.vue';
+import IconButton from '@/components/IconButton.vue';
 import Message from '@/components/Message.vue';
 import router from '@/router';
 
@@ -14,13 +14,12 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <Button
-    className="px-0"
+  <IconButton
+    name="backArrow"
     v-if="hasBackButton"
-    variant="ghost"
     @click="router.go(-1)"
-    >{{ '< Back' }}</Button
-  >
+    className="!px-0"
+  />
   <Message
     text="Loading... Imagine some spinner or skeleton ._."
     v-if="isLoading"

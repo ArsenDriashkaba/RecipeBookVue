@@ -1,14 +1,33 @@
-<script setup lang="ts">
-export type InputProps = {
-  type?: string;
-  placeholder?: string;
+<script setup lang="ts" generic="Value">
+import Icon from '@/components/Icon/Icon.vue';
+import type { IconName } from '@/components/Icon/icons';
+
+export type InputProps<Value> = {
+  modelValue?: Value;
+  iconName?: IconName;
 };
 
-withDefaults(defineProps<InputProps>(), {
+withDefaults(defineProps<InputProps<Value>>(), {
   type: 'text',
 });
 </script>
 
 <template>
-  <input class="" :placeholder="placeholder" :type="type" />
+  <div class="relative border-none w-full p-0">
+    <input
+      v-bind="$attrs"
+      :class="[
+        'relative w-full focus:border-newOrange focus:border-2',
+        iconName && 'pr-12',
+      ]"
+      :modelValue="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
+    />
+    <Icon
+      name="search"
+      class="absolute right-3 top-1/2 -translate-y-1/2"
+      v-if="iconName"
+      size="sm"
+    />
+  </div>
 </template>

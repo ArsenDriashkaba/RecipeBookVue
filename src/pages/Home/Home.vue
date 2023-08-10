@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue';
 
 import Button from '@/components/Button.vue';
+import Input from '@/components/Input.vue';
 import Page from '@/components/Page.vue';
 import { useGetRecipesQuery } from '@/pages/Home/api';
 import RecipesList from '@/pages/Home/components/RecipesList.vue';
@@ -30,11 +31,12 @@ const { searchValue, filteredValues } = useFilteredRecipes(recipesData);
 <template>
   <Page :isLoading="isLoading" :isError="isError" :hasBackButton="false">
     <section class="relative">
-      <div class="my-3 flex items-center justify-between">
-        <input
+      <div class="my-3 flex items-center justify-between gap-3">
+        <Input
           v-model="searchValue"
           placeholder="Discover best recipes..."
-          class="w-2/3"
+          class="w-full"
+          iconName="search"
         />
         <Button @click="isFavorites = !isFavorites" variant="secondary">
           {{ favoritesBtnText }}
