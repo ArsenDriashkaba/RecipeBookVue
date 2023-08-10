@@ -8,7 +8,7 @@ defineProps<Props>();
 </script>
 
 <template>
-  <Button :type="type" :className="className" variant="ghost">
+  <Button :type="type" :className="`!p-0 mx-0.5 ${className}`" variant="ghost">
     <Icon :name="name" :size="size" :variant="variant" />
   </Button>
 </template>

@@ -5,6 +5,8 @@ import {
   RiHeart3Fill,
   RiHeart3Line,
   RiHome3Fill,
+  RiLayoutGridFill,
+  RiListCheck,
   RiSearchLine,
 } from 'oh-vue-icons/icons';
 
@@ -15,6 +17,8 @@ addIcons(
   RiDeleteBin6Fill,
   RiArrowGoBackFill,
   RiSearchLine,
+  RiLayoutGridFill,
+  RiListCheck,
 );
 
 export const icons = {
@@ -24,6 +28,8 @@ export const icons = {
   deleteBin: RiDeleteBin6Fill.name,
   backArrow: RiArrowGoBackFill.name,
   search: RiSearchLine.name,
+  grid: RiLayoutGridFill.name,
+  list: RiListCheck.name,
 };
 
 export type IconName = keyof typeof icons;
