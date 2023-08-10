@@ -3,16 +3,14 @@ import { computed, ref } from 'vue';
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/vue';
 
 import Button from '@/components/Button.vue';
-import DataTable from '@/components/DataTable/DataTable.vue';
+import IconButton from '@/components/IconButton.vue';
 import Input from '@/components/Input.vue';
 import Page from '@/components/Page.vue';
 import { useGetRecipesQuery } from '@/pages/Home/api';
 import RecipesList from '@/pages/Home/components/RecipesList.vue';
+import RecipesTable from '@/pages/Home/components/RecipesTable.vue';
 import { useFilteredRecipes } from '@/pages/Home/hooks/useFilteredRecipes';
 import { useFavoriteRecipesStore } from '@/stores/favoritesRecipes';
-import Icon from '@/components/Icon/Icon.vue';
-import IconButton from '@/components/IconButton.vue';
-import RecipesTable from '@/pages/Home/components/RecipesTable.vue';
 
 const isFavorites = ref<boolean>(false);
 
@@ -48,15 +46,22 @@ const { searchValue, filteredValues } = useFilteredRecipes(recipesData);
         </Button>
       </div>
       <TabGroup>
-        <TabList>
-          <Tab class="focus:border-none"><IconButton name="grid" /></Tab>
-          <Tab><IconButton name="list" /></Tab>
+        <TabList class="w-full flex items-center justify-end py-2">
+          <Tab v-slot="{ selected }">
+            <IconButton :name="selected ? 'grid' : 'gridLine'" />
+          </Tab>
+          <Tab v-slot="{ selected }">
+            <IconButton :name="selected ? 'list' : 'listLine'" />
+          </Tab>
         </TabList>
+
         <TabPanels>
           <TabPanel>
             <RecipesList v-if="recipes" :recipes="filteredValues" />
           </TabPanel>
-          <TabPanel><RecipesTable :recipesData="filteredValues" /></TabPanel>
+          <TabPanel>
+            <RecipesTable :recipesData="filteredValues" />
+          </TabPanel>
         </TabPanels>
       </TabGroup>
     </section>

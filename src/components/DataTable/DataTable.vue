@@ -13,6 +13,8 @@ type Props = {
 
 const props = defineProps<Props>();
 
+const cellStyles = 'p-5 relative text-start';
+
 const table = useVueTable({
   get data() {
     return props.data;
@@ -27,11 +29,15 @@ const table = useVueTable({
 <template>
   <table class="shadow-md w-full">
     <thead>
-      <tr v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
+      <tr
+        v-for="headerGroup in table.getHeaderGroups()"
+        :key="headerGroup.id"
+        class="p-2"
+      >
         <th
           v-for="header in headerGroup.headers"
           :key="header.id"
-          class="text-start"
+          :class="cellStyles"
         >
           <FlexRender
             :render="header.column.columnDef.header"
@@ -41,8 +47,12 @@ const table = useVueTable({
       </tr>
     </thead>
     <tbody>
-      <tr v-for="row in table.getRowModel().rows" :key="row.id" class="">
-        <td v-for="cell in row.getVisibleCells()" :key="cell.id">
+      <tr v-for="row in table.getRowModel().rows" :key="row.id">
+        <td
+          v-for="cell in row.getVisibleCells()"
+          :key="cell.id"
+          :class="cellStyles"
+        >
           <FlexRender
             :render="cell.column.columnDef.cell"
             :props="cell.getContext()"

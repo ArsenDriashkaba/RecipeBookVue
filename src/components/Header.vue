@@ -12,7 +12,7 @@ import { routes } from '@/router/routes';
         class="flex items-center justify-center gap-2"
       >
         <Icon name="home" variant="light" />
-        <h1 class="text-2xl text-white hover:scale-110 transition ease-in-out">
+        <h1 class="text-2xl text-white hover:scale-105 transition ease-in-out">
           Feed your cat bro!
         </h1>
       </RouterLink>

@@ -24,12 +24,12 @@ const hoverStyles = computed(() =>
 <template>
   <RouterLink :to="routes.recipeDetail(recipe._id)">
     <div
-      class="shadow-md w-full h-full hover:scale-110 transition ease-in-out bg-newYellow relative group"
+      class="shadow-md w-full h-full hover:scale-105 transition ease-in-out bg-newYellow relative group"
     >
       <FavoriteButton
         :recipeId="recipe._id"
         isIconButton
-        :class="['absolute top-0 right-0 transition ease-in-out', hoverStyles]"
+        :class="['absolute top-2 right-2 transition ease-in-out', hoverStyles]"
       />
       <img :src="foodPlaceholder" alt="foodPlaceholder" class="w-full" />
       <h2 class="w-full p-2 text-start">{{ recipe.title }}</h2>

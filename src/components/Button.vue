@@ -20,7 +20,7 @@ withDefaults(defineProps<ButtonProps>(), {
 <template>
   <button
     :class="[
-      'hover:scale-110 transition ease-in-out py-2 px-5 text-md font-semibold',
+      'hover:scale-105 transition ease-in-out py-2 px-5 text-md font-semibold',
       styleVariants[variant],
       className,
     ]"
