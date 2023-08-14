@@ -12,6 +12,7 @@ import type { Recipe } from '@/types/recipe';
 type Props = {
   initialValues?: Recipe;
   hasCancelButton?: boolean;
+  isLoading?: boolean;
 };
 
 defineProps<Props>();
@@ -45,11 +46,11 @@ const validationSchema = yup.object().shape({
     :formOptions="{ validationSchema, initialValues }"
     autocomplete="off"
   >
-    <div class="flex w-full gap-2 py-4 items-center justify-end">
+    <div class="flex w-full gap-2 items-center py-2 justify-end">
       <Button v-if="hasCancelButton" @click="emit('onCancel')" variant="ghost"
         >Cancel</Button
       >
-      <Button type="submit">Submit</Button>
+      <Button type="submit" :isLoading="isLoading">Submit</Button>
     </div>
     <div class="flex gap-2">
       <div class="w-1/2 border-2 my-3 p-3">

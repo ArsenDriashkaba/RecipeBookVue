@@ -13,7 +13,7 @@ type Props = {
 
 const props = defineProps<Props>();
 
-const cellStyles = 'p-5 relative text-start';
+const cellStyles = 'p-5 relative text-start min-w-fit-content relative';
 
 const table = useVueTable({
   get data() {
@@ -32,7 +32,7 @@ const table = useVueTable({
       <tr
         v-for="headerGroup in table.getHeaderGroups()"
         :key="headerGroup.id"
-        class="p-2"
+        class="p-2 bg-gray-50"
       >
         <th
           v-for="header in headerGroup.headers"
@@ -47,7 +47,11 @@ const table = useVueTable({
       </tr>
     </thead>
     <tbody>
-      <tr v-for="row in table.getRowModel().rows" :key="row.id">
+      <tr
+        v-for="row in table.getRowModel().rows"
+        :key="row.id"
+        class="!border-b-2 border-gray-100"
+      >
         <td
           v-for="cell in row.getVisibleCells()"
           :key="cell.id"

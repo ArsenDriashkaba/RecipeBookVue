@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-
 import Button from '@/components/Button.vue';
 import Modal from '@/components/Modal/Modal.vue';
 import { useDeleteRecipeMutation } from '@/pages/RecipeDetail/api';
@@ -16,9 +14,6 @@ const emit = defineEmits(['onClose']);
 
 const { mutate, isLoading, isError } = useDeleteRecipeMutation(props.recipeId);
 
-const submitButtonText = computed(() =>
-  isLoading.value ? 'Loading' : 'Submit',
-);
 const handleSubmit = () => {
   if (!props.recipeId) {
     return;
@@ -35,9 +30,9 @@ const handleSubmit = () => {
     <p>Are you sure you want to delete this recipe?</p>
 
     <template v-slot:actions>
-      <div>
+      <div class="flex">
         <Button variant="ghost" @click="emit('onClose')">Cancel</Button>
-        <Button @click="handleSubmit">{{ submitButtonText }}</Button>
+        <Button @click="handleSubmit" :isLoading="isLoading">Submit</Button>
       </div>
     </template>
   </Modal>

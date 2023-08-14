@@ -2,6 +2,7 @@ import { addIcons } from 'oh-vue-icons';
 import {
   RiArrowGoBackFill,
   RiDeleteBin6Fill,
+  RiEdit2Fill,
   RiFileListFill,
   RiFileListLine,
   RiHeart3Fill,
@@ -9,6 +10,7 @@ import {
   RiHome3Fill,
   RiLayoutGridFill,
   RiLayoutGridLine,
+  RiLoader4Fill,
   RiSearchLine,
 } from 'oh-vue-icons/icons';
 
@@ -23,6 +25,8 @@ addIcons(
   RiFileListFill,
   RiLayoutGridLine,
   RiFileListLine,
+  RiEdit2Fill,
+  RiLoader4Fill,
 );
 
 export const icons = {
@@ -36,6 +40,8 @@ export const icons = {
   gridLine: RiLayoutGridLine.name,
   list: RiFileListFill.name,
   listLine: RiFileListLine.name,
+  edit: RiEdit2Fill.name,
+  loading: RiLoader4Fill.name,
 };
 
 export type IconName = keyof typeof icons;

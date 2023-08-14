@@ -29,7 +29,6 @@ const titleCell = (recipeId: string, title: string) =>
 const favoriteButtonCell = (recipeId: string) =>
   h(FavoriteButton, {
     recipeId,
-    class: 'w-full',
     isIconButton: true,
   });
 

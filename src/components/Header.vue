@@ -1,7 +1,13 @@
 <script setup lang="ts">
+import { useTranslation } from 'i18next-vue';
+
 import Button from '@/components/Button.vue';
 import Icon from '@/components/Icon/Icon.vue';
 import { routes } from '@/router/routes';
+
+const { i18next } = useTranslation();
+
+const handleToggleLanguage = () => i18next.changeLanguage('en');
 </script>
 
 <template>
@@ -16,8 +22,9 @@ import { routes } from '@/router/routes';
           Feed your cat bro!
         </h1>
       </RouterLink>
+
       <RouterLink :to="routes.addRecipe"
-        ><Button>Add recipe</Button>
+        ><Button>{{ $t('common.addRecipe') }}</Button>
       </RouterLink>
     </div>
   </header>

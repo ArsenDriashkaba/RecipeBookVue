@@ -59,6 +59,7 @@ const handleUpdateRecipe = ({ newIngredient, ...recipe }: AddRecipe) =>
           <Button
             variant="ghost"
             @click="deleteRecipeDialog.handleIsOpen(true)"
+            iconName="deleteBin"
           >
             Delete
           </Button>

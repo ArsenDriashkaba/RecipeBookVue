@@ -18,7 +18,7 @@ const favoriteRecipesStore = useFavoriteRecipesStore();
 const { isLoading, isError, data: recipes } = useGetRecipesQuery();
 
 const favoritesBtnText = computed(() =>
-  isFavorites.value ? 'All recipes' : 'Favorites',
+  isFavorites.value ? 'All' : 'Favorites',
 );
 const recipesData = computed(() =>
   isFavorites.value
@@ -41,7 +41,11 @@ const { searchValue, filteredValues } = useFilteredRecipes(recipesData);
           class="w-full"
           iconName="search"
         />
-        <Button @click="isFavorites = !isFavorites" variant="secondary">
+        <Button
+          @click="isFavorites = !isFavorites"
+          variant="secondary"
+          className=""
+        >
           {{ favoritesBtnText }}
         </Button>
       </div>

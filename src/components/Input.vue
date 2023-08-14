@@ -17,7 +17,7 @@ withDefaults(defineProps<InputProps<Value>>(), {
     <input
       v-bind="$attrs"
       :class="[
-        'relative w-full focus:border-newOrange focus:border-2',
+        'relative w-full focus:border-newOrange !focus:outline-none',
         iconName && 'pr-12',
       ]"
       :modelValue="modelValue"

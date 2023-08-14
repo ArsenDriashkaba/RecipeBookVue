@@ -21,6 +21,7 @@ const handleAddRecipe = ({ newIngredient, ...recipe }: AddRecipe) =>
       @onSubmit="handleAddRecipe"
       hasCancelButton
       @onCancel="router.go(-1)"
+      :isLoading="isLoading"
     />
   </Page>
 </template>
