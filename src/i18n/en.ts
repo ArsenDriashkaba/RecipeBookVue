@@ -27,6 +27,12 @@ export default {
     loadingMsg: 'Loading...',
     actions: 'Actions',
     notFoundMsg: 'Not found. Bad URL bro ._.',
+    recipeNamePlaceholder: 'Recipe name...',
+    preparationTimePlaceholder: 'Enter time in minutes...',
+    nameValidationMsg: 'Name is required field',
+    preparationTimeValidationMsg:
+      'Preparation time is required field. Please enter a number of minutes',
+    directionsValidationMsg: 'Directions is required field',
   },
   home: {
     allRecipes: 'All recipes',

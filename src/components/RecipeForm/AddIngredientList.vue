@@ -46,20 +46,29 @@ const handleAddNewIngredient = () => {
 
 <template>
   <div class="border-2 my-3 p-3">
-    <p class="border-b-2 mb-5">Add new ingredient</p>
+    <p class="border-b-2 mb-5">{{ $t('common.addNewIngredient') }}</p>
 
     <SelectField
       :options="ingredientsOptions"
       name="newIngredient.name"
-      label="Name"
+      :label="$t('common.name')"
     />
-    <InputField name="newIngredient.amount" type="number" label="Amount" />
-    <InputField name="newIngredient.amountUnit" label="Amount unit" />
-    <Button @click="handleAddNewIngredient" class="mb-10"
-      >Add ingredient</Button
-    >
+    <InputField
+      name="newIngredient.amount"
+      type="number"
+      :label="$t('common.amount')"
+    />
+    <InputField
+      name="newIngredient.amountUnit"
+      :label="$t('common.amountUnit')"
+    />
+    <Button @click="handleAddNewIngredient" class="mb-10">{{
+      $t('common.addIngredient')
+    }}</Button>
 
-    <p class="border-b-2 mb-5" v-if="fields.length">List of ingredients</p>
+    <p class="border-b-2 mb-5" v-if="fields.length">
+      {{ $t('common.listOfIngredients') }}
+    </p>
     <div
       v-for="({ value }, index) in fields.values()"
       :key="index"

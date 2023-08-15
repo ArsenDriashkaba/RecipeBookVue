@@ -27,6 +27,12 @@ export default {
     loadingMsg: 'Načítava sa...',
     actions: 'Činnosti',
     notFoundMsg: 'Nenájdené. Zlá adresa URL brácho ._.',
+    recipeNamePlaceholder: 'Názov receptu...',
+    preparationTimePlaceholder: 'Zadajte čas v minútach...',
+    nameValidationMsg: 'Názov je povinné pole',
+    preparationTimeValidationMsg:
+      'Čas prípravy je povinná položka. Zadajte počet minút',
+    directionsValidationMsg: 'Inštrukcie je povinné pole',
   },
   home: {
     allRecipes: 'Všetky recepty',

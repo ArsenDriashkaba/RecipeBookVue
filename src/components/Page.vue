@@ -15,17 +15,21 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <Button
-    iconName="backArrow"
-    v-if="hasBackButton"
-    variant="ghost"
-    @click="router.go(-1)"
-    className="!px-0"
-  >
-    {{ $t('common.back') }}
-  </Button>
+  <header>
+    <Button
+      iconName="backArrow"
+      v-if="hasBackButton"
+      variant="ghost"
+      @click="router.go(-1)"
+      className="!px-0"
+    >
+      {{ $t('common.back') }}
+    </Button>
+    <slot name="headerContent" />
+  </header>
+
   <div class="w-full flex items-center justify-center" v-if="isLoading">
-    <Spinner :message="$t('common.loading')" />
+    <Spinner :message="$t('common.loadingMsg')" />
   </div>
   <Message :text="$t('common.errorMsg')" status="error" v-if="isError" />
   <slot v-else />

@@ -5,6 +5,7 @@ import type { IconName } from '@/components/Icon/icons';
 export type InputProps<Value> = {
   modelValue?: Value;
   iconName?: IconName;
+  placeholder?: string;
 };
 
 withDefaults(defineProps<InputProps<Value>>(), {
@@ -22,6 +23,7 @@ withDefaults(defineProps<InputProps<Value>>(), {
       ]"
       :modelValue="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
+      :placeholder="placeholder"
     />
     <Icon
       name="search"
