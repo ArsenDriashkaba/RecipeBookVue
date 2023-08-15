@@ -26,13 +26,17 @@ const handleSubmit = () => {
 </script>
 
 <template>
-  <Modal title="Delete recipe ?" :isError="isError">
-    <p>Are you sure you want to delete this recipe?</p>
+  <Modal :title="$t('common.deleteRecipeQ')" :isError="isError">
+    <p>{{ $t('common.deleteRecipeMsg') }}</p>
 
     <template v-slot:actions>
       <div class="flex">
-        <Button variant="ghost" @click="emit('onClose')">Cancel</Button>
-        <Button @click="handleSubmit" :isLoading="isLoading">Submit</Button>
+        <Button variant="ghost" @click="emit('onClose')">{{
+          $t('common.cancel')
+        }}</Button>
+        <Button @click="handleSubmit" :isLoading="isLoading">{{
+          $t('common.submit')
+        }}</Button>
       </div>
     </template>
   </Modal>

@@ -5,6 +5,7 @@ import Button from '@/components/Button.vue';
 import { IconName } from '@/components/Icon/icons';
 import IconButton from '@/components/IconButton.vue';
 import { useFavoriteRecipesStore } from '@/stores/favoritesRecipes';
+import { useTranslation } from 'i18next-vue';
 
 type Props = {
   recipeId: string;
@@ -13,10 +14,13 @@ type Props = {
 
 const props = defineProps<Props>();
 
+const { t } = useTranslation();
 const { toggleFavoriteState, getIsFavorite } = useFavoriteRecipesStore();
 const isFavourite = computed(() => getIsFavorite(props.recipeId));
 const buttonText = computed(() =>
-  isFavourite.value ? 'Remove from favorites' : 'Add to favorites',
+  isFavourite.value
+    ? t('common.removeFromFavorites')
+    : t('common.addToFavorites'),
 );
 const iconName: Ref<IconName> = computed(() =>
   isFavourite.value ? 'likeFill' : 'likeOutline',

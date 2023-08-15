@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/vue';
+import { useTranslation } from 'i18next-vue';
 
 import Button from '@/components/Button.vue';
 import IconButton from '@/components/IconButton.vue';
@@ -14,11 +15,12 @@ import { useFavoriteRecipesStore } from '@/stores/favoritesRecipes';
 
 const isFavorites = ref<boolean>(false);
 
+const { t } = useTranslation();
 const favoriteRecipesStore = useFavoriteRecipesStore();
 const { isLoading, isError, data: recipes } = useGetRecipesQuery();
 
 const favoritesBtnText = computed(() =>
-  isFavorites.value ? 'All' : 'Favorites',
+  isFavorites.value ? t('home.allRecipes') : t('home.favorites'),
 );
 const recipesData = computed(() =>
   isFavorites.value
@@ -37,7 +39,7 @@ const { searchValue, filteredValues } = useFilteredRecipes(recipesData);
       <div class="my-3 flex items-center justify-between gap-3">
         <Input
           v-model="searchValue"
-          placeholder="Discover best recipes..."
+          :placeholder="$t('home.searchPlaceholder')"
           class="w-full"
           iconName="search"
         />

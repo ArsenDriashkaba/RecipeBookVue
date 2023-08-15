@@ -16,7 +16,7 @@ const handleAddRecipe = ({ newIngredient, ...recipe }: AddRecipe) =>
 
 <template>
   <Page :isError="isError" :isLoading="isLoading">
-    <h1 class="text-3xl mt-5">Create your new recipe:</h1>
+    <h1 class="text-3xl mt-5">{{ $t('addRecipe.createNewRecipe') }}</h1>
     <RecipeForm
       @onSubmit="handleAddRecipe"
       hasCancelButton

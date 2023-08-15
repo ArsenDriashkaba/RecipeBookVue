@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { computed, h } from 'vue';
+import { useTranslation } from 'i18next-vue';
 import { RouterLink } from 'vue-router';
 
 import { createColumn } from '@/components/DataTable/createColumn';
 import DataTable from '@/components/DataTable/DataTable.vue';
 import FavoriteButton from '@/components/FavoriteButton.vue';
+import Message from '@/components/Message.vue';
 import { routes } from '@/router/routes';
 import type { Recipe } from '@/types/recipe';
 
@@ -13,6 +15,8 @@ type Props = {
 };
 
 defineProps<Props>();
+
+const { t } = useTranslation();
 
 const column = createColumn<Recipe>();
 
@@ -35,19 +39,19 @@ const favoriteButtonCell = (recipeId: string) =>
 const columns = computed(() => [
   column.accessor((row) => row.title, {
     id: 'title',
-    header: 'Title',
+    header: t('common.name'),
     cell: ({ row, getValue }) => titleCell(row.original._id, getValue?.()),
     footer: (props) => props.column.id,
   }),
   column.accessor((row) => row.preparationTime, {
     id: 'preparationTime',
-    header: 'Preparation time',
+    header: t('common.preparationTime'),
     cell: (info) => (info.getValue() ? `${info.getValue()} min` : '-'),
     footer: (props) => props.column.id,
   }),
   column.display({
     id: 'actions',
-    header: 'Actions',
+    header: t('common.actions'),
     cell: ({ row }) => favoriteButtonCell(row.original._id),
     footer: (props) => props.column.id,
   }),
@@ -55,5 +59,6 @@ const columns = computed(() => [
 </script>
 
 <template>
-  <DataTable :data="recipesData" :columns="columns" />
+  <DataTable :data="recipesData" :columns="columns" v-if="recipesData.length" />
+  <Message :text="$t('home.noRecipes')" v-else />
 </template>

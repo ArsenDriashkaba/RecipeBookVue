@@ -25,5 +25,5 @@ defineProps<Props>();
       </td>
     </tr>
   </table>
-  <Message text="No ingredients" v-else />
+  <Message :text="$t('common.noIngredients')" v-else />
 </template>

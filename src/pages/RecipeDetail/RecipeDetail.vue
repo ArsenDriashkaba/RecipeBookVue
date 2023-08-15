@@ -15,7 +15,7 @@ import {
 import DeleteRecipeModal from '@/pages/RecipeDetail/components/DeleteRecipeModal.vue';
 import DirectionsList from '@/pages/RecipeDetail/components/DirectionsList.vue';
 import IngredientsList from '@/pages/RecipeDetail/components/IngredientsList.vue';
-import { AddRecipe } from '@/types/recipe';
+import type { AddRecipe } from '@/types/recipe';
 
 const route = useRoute();
 const recipeId: string = route.params?.id as string;
@@ -61,14 +61,14 @@ const handleUpdateRecipe = ({ newIngredient, ...recipe }: AddRecipe) =>
             @click="deleteRecipeDialog.handleIsOpen(true)"
             iconName="deleteBin"
           >
-            Delete
+            {{ $t('common.delete') }}
           </Button>
           <FavoriteButton :recipeId="recipeId" />
-          <Button @click="isEditMode = true">Edit</Button>
+          <Button @click="isEditMode = true">{{ $t('common.edit') }}</Button>
         </div>
       </div>
       <p>
-        Last modified:
+        {{ $t('recipeDetail.lastModified') }}
         <DateFormat
           :date="recipe?.lastModifiedDate"
           has-time

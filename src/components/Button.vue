@@ -13,7 +13,7 @@ const styleVariants = {
 
 export type ButtonProps = {
   variant?: keyof typeof styleVariants;
-  type?: HTMLInputElement['type'];
+  type?: HTMLButtonElement['type'];
   iconName?: IconName;
   isLoading?: boolean;
   className?: string;
@@ -30,7 +30,7 @@ const spinnerStyle = computed(() => props.variant === 'primary' && 'white');
 <template>
   <button
     :class="[
-      'hover:scale-105 transition ease-in-out py-2 px-5 text-md font-semibold flex items-center',
+      'hover:scale-105 transition ease-in-out py-2 px-5 text-md font-semibold flex items-center whitespace-nowrap',
       styleVariants[variant],
       className,
     ]"

@@ -67,7 +67,7 @@ defineProps<Props>();
               </div>
               <Message
                 v-if="isError"
-                text="Something went wrong !"
+                :text="$t('common.errorMsg')"
                 status="error"
               />
             </DialogPanel>

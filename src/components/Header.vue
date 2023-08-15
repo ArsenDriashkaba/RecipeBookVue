@@ -3,11 +3,19 @@ import { useTranslation } from 'i18next-vue';
 
 import Button from '@/components/Button.vue';
 import Icon from '@/components/Icon/Icon.vue';
+import Menu from '@/components/Menu/Menu.vue';
+import MenuItem from '@/components/Menu/MenuItem.vue';
 import { routes } from '@/router/routes';
 
 const { i18next } = useTranslation();
 
-const handleToggleLanguage = () => i18next.changeLanguage('en');
+const languageOptions = [
+  { label: 'EN', value: 'en' },
+  { label: 'SK', value: 'sk' },
+];
+
+const handleToggleLanguage = (eventValue: string) =>
+  i18next.changeLanguage(eventValue);
 </script>
 
 <template>
@@ -23,9 +31,21 @@ const handleToggleLanguage = () => i18next.changeLanguage('en');
         </h1>
       </RouterLink>
 
-      <RouterLink :to="routes.addRecipe"
-        ><Button>{{ $t('common.addRecipe') }}</Button>
-      </RouterLink>
+      <div class="flex">
+        <RouterLink :to="routes.addRecipe"
+          ><Button>{{ $t('common.addRecipe') }}</Button>
+        </RouterLink>
+
+        <Menu :title="$t('common.translate')">
+          <MenuItem
+            v-for="(language, index) in languageOptions"
+            :key="index"
+            @click="handleToggleLanguage(language.value)"
+          >
+            {{ language.label }}
+          </MenuItem>
+        </Menu>
+      </div>
     </div>
   </header>
 </template>

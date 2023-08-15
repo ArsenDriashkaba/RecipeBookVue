@@ -34,5 +34,5 @@ const directionsList = computed(() =>
       {{ direction }}
     </li>
   </ol>
-  <Message text="No directions" v-else />
+  <Message :text="$t('common.noDirections')" v-else />
 </template>

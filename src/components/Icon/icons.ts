@@ -12,6 +12,7 @@ import {
   RiLayoutGridLine,
   RiLoader4Fill,
   RiSearchLine,
+  RiTranslate2,
 } from 'oh-vue-icons/icons';
 
 addIcons(
@@ -27,6 +28,7 @@ addIcons(
   RiFileListLine,
   RiEdit2Fill,
   RiLoader4Fill,
+  RiTranslate2,
 );
 
 export const icons = {
@@ -42,6 +44,7 @@ export const icons = {
   listLine: RiFileListLine.name,
   edit: RiEdit2Fill.name,
   loading: RiLoader4Fill.name,
+  translate: RiTranslate2.name,
 };
 
 export type IconName = keyof typeof icons;

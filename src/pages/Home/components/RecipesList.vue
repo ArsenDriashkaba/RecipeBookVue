@@ -17,7 +17,7 @@ defineProps<Props>();
   >
     <RecipeCard v-for="recipe in recipes" :recipe="recipe" :key="recipe?._id" />
   </div>
-  <Message text="No recipes have been found :c" v-else />
+  <Message :text="$t('home.noRecipes')" v-else />
 </template>
 
 <style scoped></style>
