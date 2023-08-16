@@ -13,7 +13,7 @@ defineProps<Props>();
 <template>
   <div
     v-if="recipes?.length"
-    class="grid xl:grid-cols-5 sm:grid-cols-3 md:grid-cols-4 gap-4 shadow-md p-5"
+    class="grid xl:grid-cols-5 2xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 shadow-md p-5"
   >
     <RecipeCard v-for="recipe in recipes" :recipe="recipe" :key="recipe?._id" />
   </div>

@@ -20,7 +20,9 @@ const handleToggleLanguage = (eventValue: string) =>
 
 <template>
   <header class="bg-dark sticky top-0 z-10">
-    <div class="w-3/4 mx-auto py-5 flex items-center justify-between">
+    <div
+      class="w-3/4 mx-auto py-5 flex flex-col gap-2 2xs:gap-0 2xs:flex-row items-center justify-center 2xs:justify-between"
+    >
       <RouterLink
         :to="routes.home"
         class="flex items-center justify-center gap-2"

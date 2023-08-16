@@ -53,9 +53,13 @@ const handleUpdateRecipe = ({ newIngredient, ...recipe }: AddRecipe) =>
       />
     </div>
     <div v-else>
-      <div class="pt-2 pb-5 mb-5 flex items-center justify-between border-b-2">
+      <div
+        class="pt-2 pb-5 mb-5 flex flex-col gap-3 xs:gap-0 xs:flex-row xs:items-center justify-between border-b-2"
+      >
         <h1 class="text-4xl">{{ recipe?.title }}</h1>
-        <div class="flex gap-3">
+        <div class="flex flex-col xs:flex-row gap-3">
+          <Button @click="isEditMode = true">{{ $t('common.edit') }}</Button>
+          <FavoriteButton :recipeId="recipeId" />
           <Button
             variant="ghost"
             @click="deleteRecipeDialog.handleIsOpen(true)"
@@ -63,8 +67,6 @@ const handleUpdateRecipe = ({ newIngredient, ...recipe }: AddRecipe) =>
           >
             {{ $t('common.delete') }}
           </Button>
-          <FavoriteButton :recipeId="recipeId" />
-          <Button @click="isEditMode = true">{{ $t('common.edit') }}</Button>
         </div>
       </div>
       <p>
@@ -76,8 +78,9 @@ const handleUpdateRecipe = ({ newIngredient, ...recipe }: AddRecipe) =>
         />
       </p>
       <p>{{ recipe?.preparationTime }} min</p>
-      <div class="flex gap-16 py-8">
-        <div class="w-1/3">
+
+      <div class="flex flex-col xs:flex-row gap-16 py-8">
+        <div class="xs:w-1/3">
           <img
             :src="foodPlaceholder"
             alt="foodPlaceholder"
@@ -85,7 +88,7 @@ const handleUpdateRecipe = ({ newIngredient, ...recipe }: AddRecipe) =>
           />
           <IngredientsList :ingredients="recipe?.ingredients" />
         </div>
-        <DirectionsList :directions="recipe?.directions" class="w-2/3" />
+        <DirectionsList :directions="recipe?.directions" class="xs:w-2/3" />
       </div>
     </div>
     <DeleteRecipeModal

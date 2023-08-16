@@ -5,7 +5,7 @@ import en from '@/i18n/en';
 import sk from '@/i18n/sk';
 
 i18next.use(LanguageDetector).init({
-  debug: true,
+  debug: false,
   fallbackLng: 'en',
   resources: {
     en: {

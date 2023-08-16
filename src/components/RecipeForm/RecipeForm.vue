@@ -54,8 +54,8 @@ const validationSchema = yup.object().shape({
         {{ $t('common.submit') }}
       </Button>
     </div>
-    <div class="flex gap-2">
-      <div class="w-1/2 border-2 my-3 p-3">
+    <div class="flex gap-2 flex-col xs:flex-row">
+      <div class="xs:w-1/2 border-2 my-3 p-3">
         <InputField
           :label="$t('common.name')"
           name="title"
@@ -82,7 +82,7 @@ const validationSchema = yup.object().shape({
           :placeholder="$t('common.directionsPlaceholder')"
         />
       </div>
-      <AddIngredientList :ingredients="ingredients" class="w-1/2" />
+      <AddIngredientList :ingredients="ingredients" class="xs:w-1/2" />
     </div>
   </Form>
 </template>
